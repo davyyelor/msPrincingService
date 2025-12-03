@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Pricing Service API
+  version: 1.0.0
+  description: API para cálculo dinámico de precios y promociones.
+
+paths:
+  /pricing/{routeId}:
+    get:
+      summary: Obtener precio para una ruta
+      parameters:
+        - in: path
+          name: routeId
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Precio consultado }
+
+  /pricing/calculate:
+    post:
+      summary: Calcular precio dinámico
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routeId, date]
+              properties:
+                routeId: { type: string }
+                date: { type: string }
+      responses:
+        "200": { description: Precio calculado }
+
+  /pricing/promotions:
+    get:
+      summary: Obtener promociones activas
+      responses:
+        "200": { description: Lista de promociones }
+
+    post:
+      summary: Crear una nueva promoción
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, discount]
+              properties:
+                name: { type: string }
+                discount: { type: number }
+      responses:
+        "201": { description: Promoción creada }

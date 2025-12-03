@@ -1,19 +1,42 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: msPrincingService
-  description: "Servicio generado con el template Spring Boot Clean Architecture"
+  name: ms-pricing-service
+  description: Servicio de cálculo de tarifas y promociones dinámicas.
   tags:
     - java
     - springboot
-    - clean-architecture
+    - pricing
+  annotations:
+    github.com/project-slug: davyyelor/ms-pricing-service
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
   lifecycle: production
-  owner: user:davidelorzag
+  system: sistema-ticketing
+  owner: group:team-ticketing
+  providesApis:
+    - ms-pricing-service-api
 
-  # URL del repositorio generado automáticamente
   links:
-    - url: https://github.com/davyyelor/msPrincingService
+    - url: https://github.com/davyyelor/ms-pricing-service
       title: Repositorio GitHub
       icon: github
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ms-pricing-service-api
+  description: API REST para cálculo de tarifas y gestión de promociones.
+  tags:
+    - openapi
+    - pricing
+  annotations:
+    backstage.io/openapi-ref: ./api.yaml
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:team-ticketing
+  system: sistema-ticketing
+  definition:
+    $text: ./api.yaml

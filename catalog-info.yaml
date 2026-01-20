@@ -14,7 +14,7 @@ spec:
   type: service
   lifecycle: production
   system: sistema-ticketing
-  owner: group:team-ticketing
+  owner: group:aplicaciones-moviles
   providesApis:
     - ms-pricing-service-api
 
@@ -36,7 +36,8 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner: group:team-ticketing
+  owner: group:aplicaciones-moviles
   system: sistema-ticketing
   definition:
     $text: ./api.yaml
+
